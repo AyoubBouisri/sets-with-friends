@@ -6,6 +6,7 @@ import pyautogui
 import cv2 as cv
 
 
+
 def get_corners_pos():
     print("Click on the top left and bottom right corner to calibrate the game ... ")
     corners = [None, None]
@@ -215,7 +216,7 @@ def read_board(img):
 
 
 def find_set(cards):
-    CHARACTERISTICS = ["color", "shape", "count", "filling"]
+    CHARACTERISTICS = ['color', 'shape', 'count', 'filling']
     # Always gonna be 3 * 4 so we can afford to do a quick O(n^3)
     for i in range(len(cards)):
         for j in range(len(cards)):
@@ -234,13 +235,13 @@ def find_set(cards):
                         continue
                     if len(set(c_l)) == len(c_l):
                         continue
-
+                    
                     is_set = False
                     break
 
                 if is_set:
                     return [i, j, k]
-
+    
     return None
 
 
@@ -251,9 +252,9 @@ def draw_set(img, indexes):
     sq_h = img.shape[0] / rows
 
     for i in indexes:
-        col = math.floor(i / rows)
+        col = math.floor(i / rows) 
         row = i % rows
-
+        
         tl = (col * sq_w, row * sq_h)
         x = int(tl[0])
         y = int(tl[1])
@@ -265,8 +266,7 @@ def draw_set(img, indexes):
         print(f"{col} : {row}")
 
     return img
-
-
+    
 if __name__ == "__main__":
     corners = get_corners_pos()
     tl = corners[0]
@@ -281,6 +281,7 @@ if __name__ == "__main__":
         img, cards = read_board(img)
         cur_set = find_set(cards)
 
+        
         if cur_set:
             img = draw_set(img, cur_set)
 
