@@ -73,7 +73,7 @@ def get_shape(shape):
 
     if len(approx) <= 5:
         return "losange"
-    elif len(approx) >= 10:
+    elif len(approx) > 11:
         return "squiggle"
     else:
         return "oval"
